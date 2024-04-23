@@ -19,7 +19,7 @@ class Carte
 {
 public:
   friend istream &operator>>(istream &is, Carte &carte);
-  void Afficher() const;
+  void Afficher(ostream& os) const;
 
 private:
   struct Noeud

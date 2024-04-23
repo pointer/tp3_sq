@@ -10,7 +10,7 @@ using namespace std;
 class Carte {
 public:
     friend istream &operator>>(istream &is, Carte &carte);
-    void Afficher() const;
+    void Afficher(ostream& os) const;
 
 private:
     struct Noeud {
@@ -50,20 +50,20 @@ istream &operator>>(istream &is, Carte &carte) {
     return is;
 }
 
-void Carte::Afficher() const {
+void Carte::Afficher(ostream& os) const {
     // Afficher les sites
     for (const auto& site : sites) {
-        cout << site << endl;
+        os << site << endl;
     }
 
     // Afficher noeuds et calculer le cout total
     int cout_total = 0;
     for (const auto& noeud : noeuds) {
-        cout << noeud.rue << " " << noeud.debut << " " << noeud.fin << " " << noeud.cout << endl;
+        os << noeud.rue << " " << noeud.debut << " " << noeud.fin << " " << noeud.cout << endl;
         cout_total += noeud.cout;
     }
 
-    cout << "---" << endl << cout_total << endl;
+    os << "---" << endl << cout_total << endl;
 }
 
 bool Carte::CompareNoeuds(const Noeud& a, const Noeud& b) {
